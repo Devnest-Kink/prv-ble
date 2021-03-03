@@ -1,0 +1,19 @@
+{
+  "service" : {
+    "name": "Battery Service",
+    "UUID": "0x180F"
+  },
+  "characteristics" : [
+    {
+      "name": "Battery Level",
+      "UUID": "0x2A19",
+      "datatype": "uint8",
+      "properties": {
+        "read": true,
+        "notify": true,
+        "write": false,
+        "write_without_response": false
+      }
+    }
+  ]
+}
