@@ -1,3 +1,3 @@
 # Battery Service
-## Battery Level
+#### `Battery Level` Characteristic
 Integer values from 0 to 100, inclusive.

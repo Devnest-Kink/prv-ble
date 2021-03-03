@@ -1,0 +1,7 @@
+{
+  "name": "Deep by Kink E-Stim Plug",
+  "services": [
+    "device_information.json",
+    "battery.json"
+  ]
+}

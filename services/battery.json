@@ -1,13 +1,13 @@
 {
   "service" : {
     "name": "Battery Service",
-    "UUID": "0x180F"
+    "UUID": "180F"
   },
   "characteristics" : [
     {
       "name": "Battery Level",
-      "UUID": "0x2A19",
-      "datatype": "uint8",
+      "UUID": "2A19",
+      "datatype": ["uint8"],
       "properties": {
         "read": true,
         "notify": true,
