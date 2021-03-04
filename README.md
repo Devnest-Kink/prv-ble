@@ -15,16 +15,33 @@ Services will be presented on the device in the order of files in the array.
 BLE Services are defined in individual files in the `services` directory.
 Service files contain a top-level object with `service` and `characteristics` keys.
 
+#### UUIDs
+The Bluetooth Spec defines a 16-bit shorthand for UUIDs for Services and Characteristics
+defined by the Specification.
+All 16-bit Bluetooth-defined UUIDs are substituted into a 'base' UUID,
+`00000000-0000-1000-8000-00805F9B34FB`, by replacing the third and fourth bytes of
+a big-endian UUID representation.
+
+For hexadecimal representations of UUID, the net effect is that a four characters of the full
+UUID are replaced by the 16-bit shorthand hex values. For all Bluetooth-assigned UUIDs,
+substitute the four hex characters for the 'XXXX' characters in the base UUID as follows
+`0000XXXX-0000-1000-8000-00805F9B34FB`.
+
+#### `baseUUID`
+The aforementioned UUID substitution scheme is replicated by many others in the device industry,
+and is heavily leveraged by the BLE libraries used in PRV device firmware. 
+Because of this, all Service and Characteristic definitions here follow this pattern.
+Each service defines a `baseUUID` that the Service and Characteristic `UUID` fields will
+be substituted into, following the same pattern as Bluetoot-assigned UUIDs.
+
+In practical terms, each `UUID` field in a Service definition is used to replace the
+fifth through eighth hex characters in the `baseUUID` string to create the full
+128-bit UUID value for the Service or Characteristic. 
+
 #### `service`
 Service identifiers consist of of two keys/value pairs:
 * `name` - human readable UTF-8 string
-* `UUID` - 16- or 128-bit UUID values expressed as hex characters
-
-##### 16-bit UUIDs
-These are Bluetooth-assigned short-hand identifiers.
-To create a proper 128-bit UUID from a 16-bit ID,
-substitute the four hex characters for the 'XXXX' characters in the base UUID
-"0000XXXX-0000-1000-8000-00805F9B34FB".
+* `UUID` - 16-bit UUID-shorthand values expressed as hex characters
 
 #### `characteristics`
 This value is an array of BLE Characteristic definitions.
@@ -34,7 +51,7 @@ A Service will contain one or more Characteristics.
 The Characteristic name describes the logical function of the Characteristic value.
 
 ##### `UUID`
-The 16- or 128-bit UUID of the Characteristic.
+The 16-bit UUID-shorthand of the Characteristic expressed as hex characters
 
 ##### `datatype`
 An array of identifier strings that indicate how the Characteristic value should be parsed.
