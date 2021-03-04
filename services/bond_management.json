@@ -1,0 +1,35 @@
+{
+  "baseUUID": "00000000-0000-1000-8000-00805F9B34FB",
+  "service": {
+    "name": "Bond Management Service",
+    "UUID": "181E"
+  },
+  "characteristics": [
+    {
+      "name": "Bond Management Control Point",
+      "UUID": "2AA4",
+      "datatype": [
+        "uint8"
+      ],
+      "properties": {
+        "read": false,
+        "notify": false,
+        "write": true,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Bond Management Feature",
+      "UUID": "2AA5",
+      "datatype": [
+        "uint24"
+      ],
+      "properties": {
+        "read": true,
+        "notify": false,
+        "write": false,
+        "write_without_response": false
+      }
+    }
+  ]
+}

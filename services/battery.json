@@ -1,14 +1,16 @@
 {
-  "baseUUID" : "00000000-0000-1000-8000-00805F9B34FB",
-  "service" : {
+  "baseUUID": "00000000-0000-1000-8000-00805F9B34FB",
+  "service": {
     "name": "Battery Service",
     "UUID": "180F"
   },
-  "characteristics" : [
+  "characteristics": [
     {
       "name": "Battery Level",
       "UUID": "2A19",
-      "datatype": ["uint8"],
+      "datatype": [
+        "uint8"
+      ],
       "properties": {
         "read": true,
         "notify": true,

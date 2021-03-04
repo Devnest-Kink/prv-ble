@@ -1,14 +1,16 @@
 {
-  "baseUUID" : "00000000-0000-1000-8000-00805F9B34FB",
-  "service" : {
+  "baseUUID": "00000000-0000-1000-8000-00805F9B34FB",
+  "service": {
     "name": "Device Information Service",
     "UUID": "180A"
   },
-  "characteristics" : [
+  "characteristics": [
     {
       "name": "Manufacturer Name String",
       "UUID": "2A29",
-      "datatype": ["UTF8"],
+      "datatype": [
+        "UTF8"
+      ],
       "properties": {
         "read": true,
         "notify": false,
@@ -19,7 +21,9 @@
     {
       "name": "Model Number String",
       "UUID": "2A24",
-      "datatype": ["UTF8"],
+      "datatype": [
+        "UTF8"
+      ],
       "properties": {
         "read": true,
         "notify": false,
@@ -30,7 +34,9 @@
     {
       "name": "Serial Number String",
       "UUID": "2A25",
-      "datatype": ["UTF8"],
+      "datatype": [
+        "UTF8"
+      ],
       "properties": {
         "read": true,
         "notify": false,
@@ -41,7 +47,9 @@
     {
       "name": "Hardware Revision String",
       "UUID": "2A27",
-      "datatype": ["UTF8"],
+      "datatype": [
+        "UTF8"
+      ],
       "properties": {
         "read": true,
         "notify": false,
@@ -52,7 +60,9 @@
     {
       "name": "Firmware Revision String",
       "UUID": "2A26",
-      "datatype": ["UTF8"],
+      "datatype": [
+        "UTF8"
+      ],
       "properties": {
         "read": true,
         "notify": false,
@@ -63,7 +73,12 @@
     {
       "name": "PnP ID",
       "UUID": "2A50",
-      "datatype": ["uint8", "uint16", "uint16", "uint16"],
+      "datatype": [
+        "uint8",
+        "uint16",
+        "uint16",
+        "uint16"
+      ],
       "properties": {
         "read": true,
         "notify": false,
