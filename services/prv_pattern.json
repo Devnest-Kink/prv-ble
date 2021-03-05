@@ -8,9 +8,9 @@
     {
       "name": "Pattern Count",
       "UUID": "6901",
-      "datatype": [
+      "datastructure": [
         {
-          "type": "uint16",
+          "datatype": "uint16",
           "count": 1,
           "description": "Number of patterns stored on device"
         }
@@ -25,14 +25,14 @@
     {
       "name": "Pattern Metadata",
       "UUID": "6902",
-      "datatype": [
+      "datastructure": [
         {
-          "type": "uint16",
+          "datatype": "uint16",
           "count": 1,
           "description": "Index of pattern for metadata"
         },
         {
-          "type": "uint8",
+          "datatype": "uint8",
           "count": null,
           "description": "Pattern metadata (see pattern_schema.json)"
         }
@@ -47,9 +47,9 @@
     {
       "name": "Pattern Metadata Selector",
       "UUID": "6903",
-      "datatype": [
+      "datastructure": [
         {
-          "type": "uint16",
+          "datatype": "uint16",
           "count": 1,
           "description": "Set index for Pattern Metadata characteristic"
         }
@@ -64,31 +64,31 @@
     {
       "name": "Pattern Playback Status",
       "UUID": "6908",
-      "datatype": [
+      "datastructure": [
         {
-          "type": [
+          "datatype": [
             {
-              "type": "uint16",
+              "datatype": "uint16",
               "count": 1,
               "description": "Outputs bitfield, all outputs this pattern is using are indicated"
             },
             {
-              "type": "uint8",
+              "datatype": "uint8",
               "count": 1,
               "description": "Reserved for future use, will be 0"
             },
             {
-              "type": "uint8",
+              "datatype": "uint8",
               "count": 1,
               "description": "Playback status: 0xFF - Stopped, no pattern; 0x01 - Playing; 0x02 - Paused"
             },
             {
-              "type": "uint16",
+              "datatype": "uint16",
               "count": 1,
               "description": "Pattern number playing on indicated outputs, 1-indexed"
             },
             {
-              "type": "uint16",
+              "datatype": "uint16",
               "count": 1,
               "description": "Pattern Adjust value"
             }
@@ -107,29 +107,29 @@
     {
       "name": "Pattern Playback Control",
       "UUID": "6909",
-      "datatype": [
+      "datastructure": [
         {
-          "type": "uint16",
+          "datatype": "uint16",
           "count": 1,
           "description": "Outputs bitfield, all outputs this pattern will use are indicated"
         },
         {
-          "type": "uint8",
+          "datatype": "uint8",
           "count": 1,
           "description": "Reserved for future use, set to 0"
         },
         {
-          "type": "uint8",
+          "datatype": "uint8",
           "count": 1,
           "description": "Set playback status: 0xFF - Stop, deselect pattern; 0x01 - Play from beginning; 0x02 - Pause; 0x03 - Resume; 0x00 - No change"
         },
         {
-          "type": "uint16",
+          "datatype": "uint16",
           "count": 1,
           "description": "Pattern number to apply to selected outputs, 1-indexed, 0x00 for no change"
         },
         {
-          "type": "uint16",
+          "datatype": "uint16",
           "count": 1,
           "description": "Pattern Adjust value, will be reset to zero when pattern changes"
         }
@@ -144,14 +144,14 @@
     {
       "name": "Add Pattern",
       "UUID": "690C",
-      "datatype": [
+      "datastructure": [
         {
-          "type": "uint16",
+          "datatype": "uint16",
           "count": 1,
           "description": "Index at which to add pattern, 0 to append"
         },
         {
-          "type": "uint8",
+          "datatype": "uint8",
           "count": null,
           "description": "Pattern bytes"
         }
@@ -166,9 +166,9 @@
     {
       "name": "Delete Pattern",
       "UUID": "690E",
-      "datatype": [
+      "datastructure": [
         {
-          "type": "uint16",
+          "datatype": "uint16",
           "count": 1,
           "description": "Index of pattern to delete"
         }
@@ -183,9 +183,9 @@
     {
       "name": "Delete ALL Patterns",
       "UUID": "690F",
-      "datatype": [
+      "datastructure": [
         {
-          "type": "uint16",
+          "datatype": "uint16",
           "count": 1,
           "description": "Delete ALL patterns on device. Value written to characteristic must be 0x6AAC."
         }

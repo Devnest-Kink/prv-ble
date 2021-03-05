@@ -12,12 +12,12 @@ This is an array of filenames of Service definitions.
 Services will be presented on the device in the order of files in the array.
 
 ## DataTypes
-Definitions using the `datatype` JSON key are used to specify how binary data should be parsed.
+Definitions using the `datastructure` JSON key are used to specify how binary data should be parsed.
 Data is parsed as little endian beginning with the first DataType in an array.
 
 A DataType is an object with three keys, `type`, `count`, and an optional `description`:
 
-###### `type`
+###### `datatype`
 A string specifying a primitive data type or an array of DataTypes.
 The allowed primitive values are:
 * `UTF8` - A UTF-8 encoded string
@@ -75,7 +75,7 @@ The Characteristic name describes the logical function of the Characteristic val
 ##### `UUID`
 The 16-bit UUID-shorthand of the Characteristic expressed as hex characters
 
-##### `datatype`
+##### `datastructure`
 An array of DataTypes, as described above.
 
 ##### `properties`
