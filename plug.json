@@ -4,6 +4,7 @@
     "device_information.json",
     "battery.json",
     "bond_management.json",
-    "prv_pattern.json"
+    "prv_pattern.json",
+    "prv_hardware.json"
   ]
 }

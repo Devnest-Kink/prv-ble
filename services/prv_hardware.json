@@ -1,0 +1,86 @@
+{
+  "baseUUID": "3C630000-FDCB-4558-B637-DF8901CE7E8A",
+  "service": {
+    "name": "PRV Hardware Service",
+    "UUID": "6910"
+  },
+  "characteristics": [
+    {
+      "name": "Output Definitions",
+      "UUID": "6911",
+      "datastructure": [
+        {
+          "datatype": "uint8",
+          "count": 1,
+          "description": "Number of distinct output channels of the device"
+        },
+        {
+          "datatype": "uint8",
+          "count": 1,
+          "description": "Number of distinct *types* of output channels of the device"
+        },
+        {
+          "datatype": [
+            {
+              "datatype": "uint16",
+              "count": 1,
+              "description": "Bitfield of output channels of corresponding type"
+            },
+            {
+              "datatype": "uint16",
+              "count": 1,
+              "description": "Enum value describing type of output"
+            },
+          ],
+          "count": null,
+          "description": "One bitfield/enum pair per output *type*"
+        }
+      ],
+      "properties": {
+        "read": true,
+        "notify": false,
+        "write": false,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Output Power Levels",
+      "UUID": "6912",
+      "datastructure": [
+        {
+          "datatype": "uint16",
+          "count": null,
+          "description": "One value per channel, in bitfield order"
+        }
+      ],
+      "properties": {
+        "read": true,
+        "notify": true,
+        "write": false,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Set Output Power Level",
+      "UUID": "6913",
+      "datastructure": [
+        {
+          "datatype": "uint16",
+          "count": 1,
+          "description": "Bitfield of channels to set output level on"
+        },
+        {
+          "datatype": "uint16",
+          "count": 1,
+          "description": "Output level value to set on selected channels"
+        }
+      ],
+      "properties": {
+        "read": false,
+        "notify": false,
+        "write": true,
+        "write_without_response": false
+      }
+    }
+  ]
+}
