@@ -15,13 +15,14 @@ Services will be presented on the device in the order of files in the array.
 Definitions using the `datatype` JSON key are used to specify how binary data should be parsed.
 Data is parsed as little endian beginning with the first DataType in an array.
 
-A DataType is an object with three keys, `type`, `count`, and `description`:
+A DataType is an object with three keys, `type`, `count`, and an optional `description`:
 
 ###### `type`
-A string specifying a data type. The allowed values are:
+A string specifying a primitive data type or an array of DataTypes.
+The allowed primitive values are:
 * `UTF8` - A UTF-8 encoded string
 * `uint8`/`uint16`/`uint32` - Unsigned integers of 8, 16, or 32-bit lengths
-* `int8`/`int16`/`int32` - 2's complement signed integers of 8, 16, or 32-bit lengths.
+* `int8`/`int16`/`int32` - 2's complement signed integers of 8, 16, or 32-bit lengths
 
 ###### `count`
 This value will be either a number or `null`.

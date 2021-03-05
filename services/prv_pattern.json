@@ -1,0 +1,201 @@
+{
+  "baseUUID": "3C630000-FDCB-4558-B637-DF8901CE7E8A",
+  "service": {
+    "name": "PRV Pattern Service",
+    "UUID": "6900"
+  },
+  "characteristics": [
+    {
+      "name": "Pattern Count",
+      "UUID": "6901",
+      "datatype": [
+        {
+          "type": "uint16",
+          "count": 1,
+          "description": "Number of patterns stored on device"
+        }
+      ],
+      "properties": {
+        "read": true,
+        "notify": true,
+        "write": false,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Pattern Metadata",
+      "UUID": "6902",
+      "datatype": [
+        {
+          "type": "uint16",
+          "count": 1,
+          "description": "Index of pattern for metadata"
+        },
+        {
+          "type": "uint8",
+          "count": null,
+          "description": "Pattern metadata (see pattern_schema.json)"
+        }
+      ],
+      "properties": {
+        "read": true,
+        "notify": true,
+        "write": false,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Pattern Metadata Selector",
+      "UUID": "6903",
+      "datatype": [
+        {
+          "type": "uint16",
+          "count": 1,
+          "description": "Set index for Pattern Metadata characteristic"
+        }
+      ],
+      "properties": {
+        "read": false,
+        "notify": false,
+        "write": true,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Pattern Playback Status",
+      "UUID": "6908",
+      "datatype": [
+        {
+          "type": [
+            {
+              "type": "uint16",
+              "count": 1,
+              "description": "Outputs bitfield, all outputs this pattern is using are indicated"
+            },
+            {
+              "type": "uint8",
+              "count": 1,
+              "description": "Reserved for future use, will be 0"
+            },
+            {
+              "type": "uint8",
+              "count": 1,
+              "description": "Playback status: 0xFF - Stopped, no pattern; 0x01 - Playing; 0x02 - Paused"
+            },
+            {
+              "type": "uint16",
+              "count": 1,
+              "description": "Pattern number playing on indicated outputs, 1-indexed"
+            },
+            {
+              "type": "uint16",
+              "count": 1,
+              "description": "Pattern Adjust value"
+            }
+          ],
+          "count": null,
+          "description": "One set of values per device output"
+        }
+      ],
+      "properties": {
+        "read": true,
+        "notify": true,
+        "write": false,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Pattern Playback Control",
+      "UUID": "6909",
+      "datatype": [
+        {
+          "type": "uint16",
+          "count": 1,
+          "description": "Outputs bitfield, all outputs this pattern will use are indicated"
+        },
+        {
+          "type": "uint8",
+          "count": 1,
+          "description": "Reserved for future use, set to 0"
+        },
+        {
+          "type": "uint8",
+          "count": 1,
+          "description": "Set playback status: 0xFF - Stop, deselect pattern; 0x01 - Play from beginning; 0x02 - Pause; 0x03 - Resume; 0x00 - No change"
+        },
+        {
+          "type": "uint16",
+          "count": 1,
+          "description": "Pattern number to apply to selected outputs, 1-indexed, 0x00 for no change"
+        },
+        {
+          "type": "uint16",
+          "count": 1,
+          "description": "Pattern Adjust value, will be reset to zero when pattern changes"
+        }
+      ],
+      "properties": {
+        "read": false,
+        "notify": false,
+        "write": true,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Add Pattern",
+      "UUID": "690C",
+      "datatype": [
+        {
+          "type": "uint16",
+          "count": 1,
+          "description": "Index at which to add pattern, 0 to append"
+        },
+        {
+          "type": "uint8",
+          "count": null,
+          "description": "Pattern bytes"
+        }
+      ],
+      "properties": {
+        "read": false,
+        "notify": false,
+        "write": true,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Delete Pattern",
+      "UUID": "690E",
+      "datatype": [
+        {
+          "type": "uint16",
+          "count": 1,
+          "description": "Index of pattern to delete"
+        }
+      ],
+      "properties": {
+        "read": false,
+        "notify": false,
+        "write": true,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Delete ALL Patterns",
+      "UUID": "690F",
+      "datatype": [
+        {
+          "type": "uint16",
+          "count": 1,
+          "description": "Delete ALL patterns on device. Value written to characteristic must be 0x6AAC."
+        }
+      ],
+      "properties": {
+        "read": false,
+        "notify": false,
+        "write": true,
+        "write_without_response": false
+      }
+    }
+  ]
+}
