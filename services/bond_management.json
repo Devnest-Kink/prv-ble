@@ -11,7 +11,8 @@
       "datatype": [
         {
           "type": "uint8",
-          "count": 1
+          "count": 1,
+          "description": "1 of 3 opcodes: 0x03 - delete my bond, 0x06 - delete all bonds, 0x09 - delete all other bonds"
         }
       ],
       "properties": {
@@ -27,7 +28,8 @@
       "datatype": [
         {
           "type": "uint8",
-          "count": 3
+          "count": 3,
+          "description": "0x01 0x04 0x10"
         }
       ],
       "properties": {

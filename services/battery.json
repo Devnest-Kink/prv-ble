@@ -11,7 +11,8 @@
       "datatype": [
         {
           "type": "uint8",
-          "count": 1
+          "count": 1,
+          "description": "Integer from 0 to 100, as a percentage"
         },
       ],
       "properties": {

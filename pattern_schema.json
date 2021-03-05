@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "title": {
+      "datatype": {
+        "type": "UTF8",
+        "count": 23
+      }
+    }
+  },
+  "bytecode": {
+    "datatype": {
+      "type": "uint8",
+      "count": null
+    }
+  }
+}

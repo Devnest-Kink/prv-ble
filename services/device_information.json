@@ -91,11 +91,18 @@
       "datatype": [
         {
           "type": "uint8",
-          "count": 1
+          "count": 1,
+          "description": "0x01"
         },
         {
           "type": "uint16",
-          "count": 3
+          "count": 1,
+          "description": "Fixed vendor ID (value TBD)"
+        },
+        {
+          "type": "uint16",
+          "count": 2,
+          "description": "Device model & version, unique per manufacturer"
         }
       ],
       "properties": {

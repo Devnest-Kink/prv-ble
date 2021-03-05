@@ -11,6 +11,27 @@ This value is the canonical display name of the device.
 This is an array of filenames of Service definitions.
 Services will be presented on the device in the order of files in the array.
 
+## DataTypes
+Definitions using the `datatype` JSON key are used to specify how binary data should be parsed.
+Data is parsed as little endian beginning with the first DataType in an array.
+
+A DataType is an object with three keys, `type`, `count`, and `description`:
+
+###### `type`
+A string specifying a data type. The allowed values are:
+* `UTF8` - A UTF-8 encoded string
+* `uint8`/`uint16`/`uint32` - Unsigned integers of 8, 16, or 32-bit lengths
+* `int8`/`int16`/`int32` - 2's complement signed integers of 8, 16, or 32-bit lengths.
+
+###### `count`
+This value will be either a number or `null`.
+* Numbers indicate how many consecutive `type`s to parse.
+* `null` indicates that the Characteristic value is of variable length,
+  and all of the remaining bytes in the value should be interpreted as `type`.
+
+###### `description`
+This is an optional entry provided only as a developer reference.
+
 ## Service Definitions
 BLE Services are defined in individual files in the `services` directory.
 Service files contain a top-level object with `service` and `characteristics` keys.
@@ -54,23 +75,7 @@ The Characteristic name describes the logical function of the Characteristic val
 The 16-bit UUID-shorthand of the Characteristic expressed as hex characters
 
 ##### `datatype`
-This value specifies how the Characteristic value should be parsed.
-Characteristic values are parsed as little endian beginning with the first datatype.
-
-`datatype` is an array of objects with two keys, `type` and `count`
-(or a string of `TBD` if the spec is unfinished):
-
-###### `type`
-A string specifying a data type. The allowed values are:
-* `UTF8` - A UTF-8 encoded string
-* `uint8`/`uint16`/`uint32` - Unsigned integers of 8, 16, or 32-bit lengths
-* `int8`/`int16`/`int32` - 2's complement signed integers of 8, 16, or 32-bit lengths.
-
-###### `count`
-This value will be either a number or `null`.
-* Numbers indicate how many consecutive `type`s to parse.
-* `null` indicates that the Characteristic value is of variable length,
-and all of the remaining bytes in the value should be interpreted as `type`.
+An array of DataTypes, as described above.
 
 ##### `properties`
 This object indicates what interactions the Characteristic supports.
