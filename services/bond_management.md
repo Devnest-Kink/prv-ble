@@ -3,7 +3,7 @@ This service allows an authenticated (bonded) device to delete bonds stored on t
 
 #### Bond Management Feature Characteristic
 This characteristic provides a bitfield indicating what features, or tasks, the device supports.
-PRV devices will return a value of `0x10410`, which indicates the tasks described below.
+PRV devices will return a value of `0x010410`, which indicates the tasks described below.
 
 #### Bond Management Control Point Characteristic
 This Characteristic will accept a write of a 1-byte opcode to perform one of three different tasks:

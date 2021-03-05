@@ -1,0 +1,91 @@
+{
+  "baseUUID": "3C630000-FDCB-4558-B637-DF8901CE7E8A",
+  "service": {
+    "name": "PRV Pattern Management Service",
+    "UUID": "6910"
+  },
+  "characteristics": [
+    {
+      "name": "Pattern Count",
+      "UUID": "6911",
+      "datatype": [
+        {
+          "type": "uint16",
+          "count": 1
+        }
+      ],
+      "properties": {
+        "read": true,
+        "notify": true,
+        "write": false,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Pattern Metadata",
+      "UUID": "6912",
+      "datatype": [
+        {
+          "type": "UTF8",
+          "count": 23
+        },
+        "TBD"
+      ],
+      "properties": {
+        "read": true,
+        "notify": true,
+        "write": false,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Pattern Metadata Selector",
+      "UUID": "6913",
+      "datatype": [
+        {
+          "type": "uint16",
+          "count": 1
+        }
+      ],
+      "properties": {
+        "read": false,
+        "notify": false,
+        "write": true,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Add Pattern",
+      "UUID": "6914",
+      "datatype": [
+        {
+          "type": "uint16",
+          "count": 1
+        },
+        "TBD"
+      ],
+      "properties": {
+        "read": false,
+        "notify": false,
+        "write": true,
+        "write_without_response": false
+      }
+    },
+    {
+      "name": "Delete Pattern",
+      "UUID": "6915",
+      "datatype": [
+        {
+          "type": "uint16",
+          "count": 1
+        }
+      ],
+      "properties": {
+        "read": false,
+        "notify": false,
+        "write": true,
+        "write_without_response": false
+      }
+    }
+  ]
+}

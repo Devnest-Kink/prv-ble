@@ -9,7 +9,10 @@
       "name": "Battery Level",
       "UUID": "2A19",
       "datatype": [
-        "uint8"
+        {
+          "type": "uint8",
+          "count": 1
+        },
       ],
       "properties": {
         "read": true,

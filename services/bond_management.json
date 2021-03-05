@@ -9,7 +9,10 @@
       "name": "Bond Management Control Point",
       "UUID": "2AA4",
       "datatype": [
-        "uint8"
+        {
+          "type": "uint8",
+          "count": 1
+        }
       ],
       "properties": {
         "read": false,
@@ -22,7 +25,10 @@
       "name": "Bond Management Feature",
       "UUID": "2AA5",
       "datatype": [
-        "uint24"
+        {
+          "type": "uint8",
+          "count": 3
+        }
       ],
       "properties": {
         "read": true,

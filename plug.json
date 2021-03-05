@@ -3,6 +3,7 @@
   "services": [
     "device_information.json",
     "battery.json",
-    "bond_management.json"
+    "bond_management.json",
+    "prv_pattern_management.json"
   ]
 }

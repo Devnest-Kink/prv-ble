@@ -54,13 +54,23 @@ The Characteristic name describes the logical function of the Characteristic val
 The 16-bit UUID-shorthand of the Characteristic expressed as hex characters
 
 ##### `datatype`
-An array of identifier strings that indicate how the Characteristic value should be parsed.
-The valid list of identifier and their meanings are as follows:
-* `UTF8` - A UTF-8 encoded string
-* `uint8`/`uint16`/`uint24`/`uint32` - Unsigned integers of 8, 16, 24, or 32-bit lengths
-* `int8`/`int16`/`int24`/`int32` - 2's complement signed integers of 8, 16, 24, or 32-bit lengths.
+This value specifies how the Characteristic value should be parsed.
+Characteristic values are parsed as little endian beginning with the first datatype.
 
-Characteristic values are parsed as little endian beginning with the left-most array identifier.
+`datatype` is an array of objects with two keys, `type` and `count`
+(or a string of `TBD` if the spec is unfinished):
+
+###### `type`
+A string specifying a data type. The allowed values are:
+* `UTF8` - A UTF-8 encoded string
+* `uint8`/`uint16`/`uint32` - Unsigned integers of 8, 16, or 32-bit lengths
+* `int8`/`int16`/`int32` - 2's complement signed integers of 8, 16, or 32-bit lengths.
+
+###### `count`
+This value will be either a number or `null`.
+* Numbers indicate how many consecutive `type`s to parse.
+* `null` indicates that the Characteristic value is of variable length,
+and all of the remaining bytes in the value should be interpreted as `type`.
 
 ##### `properties`
 This object indicates what interactions the Characteristic supports.

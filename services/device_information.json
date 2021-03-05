@@ -9,7 +9,10 @@
       "name": "Manufacturer Name String",
       "UUID": "2A29",
       "datatype": [
-        "UTF8"
+        {
+          "type": "UTF8",
+          "count": null
+        }
       ],
       "properties": {
         "read": true,
@@ -22,7 +25,10 @@
       "name": "Model Number String",
       "UUID": "2A24",
       "datatype": [
-        "UTF8"
+        {
+          "type": "UTF8",
+          "count": null
+        }
       ],
       "properties": {
         "read": true,
@@ -35,7 +41,10 @@
       "name": "Serial Number String",
       "UUID": "2A25",
       "datatype": [
-        "UTF8"
+        {
+          "type": "UTF8",
+          "count": null
+        }
       ],
       "properties": {
         "read": true,
@@ -48,7 +57,10 @@
       "name": "Hardware Revision String",
       "UUID": "2A27",
       "datatype": [
-        "UTF8"
+        {
+          "type": "UTF8",
+          "count": null
+        }
       ],
       "properties": {
         "read": true,
@@ -61,7 +73,10 @@
       "name": "Firmware Revision String",
       "UUID": "2A26",
       "datatype": [
-        "UTF8"
+        {
+          "type": "UTF8",
+          "count": null
+        }
       ],
       "properties": {
         "read": true,
@@ -74,10 +89,14 @@
       "name": "PnP ID",
       "UUID": "2A50",
       "datatype": [
-        "uint8",
-        "uint16",
-        "uint16",
-        "uint16"
+        {
+          "type": "uint8",
+          "count": 1
+        },
+        {
+          "type": "uint16",
+          "count": 3
+        }
       ],
       "properties": {
         "read": true,
