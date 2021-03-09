@@ -3,6 +3,11 @@ This service provides information about the hardware outputs of a given peripher
 Additionally, authenticated (bonded) central devices can control the maximum output levels
 of the defined hardware outputs.
 
+### Output Bounds Values
+These values define the user-controllable maximum boundary values of the device outputs.
+Patterns control the device outputs over the range defined by the boundaries set by these values.
+All Bounds Values are normalized to have zero as a minimum value.
+
 #### Output Definitions Characteristic
 These values define the the ways in which the hardware can provide stimulus.
 
@@ -13,11 +18,11 @@ The first byte defines the total count of independent logical channels for the d
 The second byte defines the total distinct types of outputs for the device.
 
 ##### Output Definitions
-The remaining bytes of the characteristic are pairs of `uint16` values,
-with each pair corresponding to one *type* of device output, `N`, as defined in Byte 1.
+The remaining bytes of the characteristic are quartets of `uint16` values (8-byte groups),
+with each set corresponding to one *type* of device output, `N`, as defined in Byte 1.
 
-###### Bytes 2 + 4*N, 3 + 4*N
-The first `uint16` value of the Output Definitions pair is an enum indicating one of the types
+###### Bytes 2 + 8*N, 3 + 8*N
+The first `uint16` value of the Output Definitions is an enum indicating one of the types
 of output for the device.
 
 The defined output types are:
@@ -26,49 +31,73 @@ The defined output types are:
 * `0x0003` - Linear Actuation
 * `0x0004` - TENS
 
-###### Bytes 3 + 4*N, 4 + 4*N
-The second `uint16` value of the Output Definitions pair is a bitfield representation of the
+###### Bytes 3 + 8*N, 4 + 8*N
+The second `uint16` value of the Output Definitions is a bitfield representation of the
 output channels of the device.
 The bits set in the bitfield indicate which device output channels correspond to the output type
 defined in the previous two bytes.
 Each device output channel will be indicated in only one bitfield.
 
-##### Output Definitions Characteristic Examples:
+###### Bytes 5 + 8*N, 6 + 8*N
+The third `uint16` value of the Output Definitions is an enum indicating the meaning of the two-byte Bounds Values
+for this output type.
+
+The defined Bounds Value types are:
+* `0x0001` - Bounds values are `uint16` and define a maximum value of the output.
+* `0x0002` - Bounds values are two `uint8`:
+  * Byte 0: Sets the output's maximum value
+  * Byte 1: Sets the output's minimum value
+
+###### Bytes 5 + 8*N, 6 + 8*N
+The last two bytes of the Output Definitions set define the maximum value(s) for the 
+output's Bounds values.
+That is, these bytes define the maximum logical value of the corresponding output.
+These bytes are interpreted according to the enum defined in the previous two bytes.
+
+##### Example Output Definitions Characteristics
 The plug has 1x e-stim output and 1x rotational vibration output,
-thus it's Characteristic will be 10 bytes: 1 + 1 + 2*(2 + 2):
+thus it's Characteristic will be the following 18 bytes: 1 + 1 + 2*(2 + 2 + 2 + 2):
 
-`0x02 0x02 0x0004 0x0001 0x0001 0x0002`
+`0x02 0x02 0x0004 0x0001 0x0001 0x0FFF 0x0001 0x0002 0x0001 0x0069`
+* `0x02` - Two output channels on plug
+* `0x02` - Two *types* of output channels on plug
+* `0x0004` - The next 6 bytes describe the TENS output
+* `0x0001` - Bitfield indicating channel `1 << 0` is a TENS output
+* `0x0001` - Bounds Values for this output are `uint16` and allow the user to set the maximum level of the TENS output
+* `0x0FFF` - A `uint16` value that defines the maximum Bounds Value for the TENS output as `0xFFF`
+* `0x0001` - The next 6 bytes describe a eccentric rotational mass vibrator output
+* `0x0002` - Bitfield indicating channel `1 << 1` is a rotational vibrator output
+* `0x0001` - Bounds Values for this output are `uint16` and allow the user to set a maximum level
+* `0x0069` - A `uint16` value that defines the maximum Bounds Value for the rotating vibrator output as 105 (`0x69`)
 
-The box has 4x e-stim outputs, thus it's Characteristic will be only 6 bytes: 1 + 1 + 1*(2 + 2):
+The box has 4x e-stim outputs, thus it's Characteristic will be only 10 bytes: 1 + 1 + 1*(2 + 2 + 2 + 2):
 
-`0x04 0x01 0x0004 0x000F`
+`0x04 0x01 0x0004 0x000F 0x0001 0x0FFF`
+* `0x04` - Four output channels on plug
+* `0x01` - One *type* of output channels on plug
+* `0x0004` - The next 6 bytes describe the TENS output
+* `0x000F` - Bitfield indicating channels `1 << 0`, `1 << 1`, `1 << 2`, and `1 << 3` are TENS outputs
+* `0x0001` - Bounds Values for this output are `uint16` and allow the user to set the maximum level of the TENS output
+* `0x0FFF` - A `uint16` value that defines the maximum Bounds Value for the TENS output as `0xFFF`
 
-### Output Bounds Values
-These values define the user-controllable maximum (and sometimes minimum) boundary values of the
-device outputs.
-Patterns control the device outputs over the range defined by the boundaries set by these values.
-Output Bounds Values are interpreted as a little-endian `uint16` when they define one value,
-or as two `uint8`s when they define two values.
-
-These bytes are interpreted different depending upon the output type to which they are associated:
-* Rotational Vibration: Maximum intensity
-  * A value between `0x00` and `0x69` (0 to 105), with `0x69` representing the maximum intensity possible.
-* Linear Vibration: As yet undefined
-* Linear Actuation: Stroke maximum, stroke minimum
-  * Each value is a fraction (out of `0xFF`) of the total actuation distance.
-  * The minimum value always follows the maximum value, and must be less than or equal to the maximum value.
-* TENS: Maximum voltage
-  * A value between `0x00` and `0xFFF`, with `0xFFF`
-    representing the maximum voltage output of a 12-bit Digital to Analog encoder (12-bit DAC).
-  
 #### Output Bounds Characteristic
-An array of the Output Bounds Values of the device, one per channel,
+This characteristic provides an array of the output Bounds Values of the device, one per channel,
 in the same order as the Output Definitions channels bitfield(s).
-The interpretation of each value is implicitly defined by the type-to-channel mapping in the
+The interpretation of each value is defined by the corresponding type as defined in the
 Output Definitions Characteristic.
 
 #### Set Output Bounds Characteristic
-Writing to this characteristic sets the Output Bounds Values of one or more device output channels.
+Writing to this characteristic sets the output Bounds Values of one or more device output channels.
 The first value of the Characteristic the new Output Bounds Value to set on one or more output channels.
 The second value is a bitfield mapping of which channels to set the new Value on,
 with the bitfield mapping defined by the Output Definitions Characteristic.
+Note that because Bounds Values are tied to output type,
+specifying outputs of two different types in the bitfield will result in an error response.
+
+##### Example Set Output Bounds
+Building upon the earlier example Output Definitions Characteristic for the plug,
+to set the maximum power level of the TENS output to half of the device's maximum output,
+write `0x07FF 0x0001` to the Set Output Bounds Characteristic (short-hand-UUID `0x6913`).
+
+If the power level of the plug vibration is also set to half of maximum, reading from the 
+Output Bounds Characteristic would yield `0x07FFF 0x0034`.

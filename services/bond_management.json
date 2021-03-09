@@ -10,9 +10,9 @@
       "UUID": "2AA4",
       "datastructure": [
         {
+          "description": "1 of 3 opcodes: 0x03 - delete my bond, 0x06 - delete all bonds, 0x09 - delete all other bonds",
           "type": "uint8",
-          "count": 1,
-          "description": "1 of 3 opcodes: 0x03 - delete my bond, 0x06 - delete all bonds, 0x09 - delete all other bonds"
+          "count": 1
         }
       ],
       "properties": {
@@ -27,9 +27,9 @@
       "UUID": "2AA5",
       "datastructure": [
         {
+          "description": "0x01 0x04 0x10",
           "type": "uint8",
-          "count": 3,
-          "description": "0x01 0x04 0x10"
+          "count": 3
         }
       ],
       "properties": {

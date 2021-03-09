@@ -10,9 +10,9 @@
       "UUID": "6901",
       "datastructure": [
         {
+          "description": "Number of patterns stored on device",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Number of patterns stored on device"
+          "count": 1
         }
       ],
       "properties": {
@@ -27,14 +27,14 @@
       "UUID": "6902",
       "datastructure": [
         {
+          "description": "Index of pattern for metadata",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Index of pattern for metadata"
+          "count": 1
         },
         {
+          "description": "Pattern metadata (see pattern_schema.json)",
           "datatype": "uint8",
-          "count": null,
-          "description": "Pattern metadata (see pattern_schema.json)"
+          "count": null
         }
       ],
       "properties": {
@@ -49,9 +49,9 @@
       "UUID": "6903",
       "datastructure": [
         {
+          "description": "Set index of pattern info to display on Pattern Metadata Characteristic",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Set index for Pattern Metadata characteristic"
+          "count": 1
         }
       ],
       "properties": {
@@ -66,35 +66,35 @@
       "UUID": "6908",
       "datastructure": [
         {
+          "description": "One set of values per device output",
           "datatype": [
             {
+              "description": "Outputs bitfield, all outputs this pattern is using are indicated",
               "datatype": "uint16",
-              "count": 1,
-              "description": "Outputs bitfield, all outputs this pattern is using are indicated"
+              "count": 1
             },
             {
+              "description": "Reserved for future use, will be 0",
               "datatype": "uint8",
-              "count": 1,
-              "description": "Reserved for future use, will be 0"
+              "count": 1
             },
             {
+              "description": "Playback status: 0xFF - Stopped, no pattern; 0x01 - Playing; 0x02 - Paused",
               "datatype": "uint8",
-              "count": 1,
-              "description": "Playback status: 0xFF - Stopped, no pattern; 0x01 - Playing; 0x02 - Paused"
+              "count": 1
             },
             {
+              "description": "Pattern number playing on indicated outputs, 1-indexed",
               "datatype": "uint16",
-              "count": 1,
-              "description": "Pattern number playing on indicated outputs, 1-indexed"
+              "count": 1
             },
             {
+              "description": "Pattern Adjust value",
               "datatype": "uint16",
-              "count": 1,
-              "description": "Pattern Adjust value"
+              "count": 1
             }
           ],
-          "count": null,
-          "description": "One set of values per device output"
+          "count": null
         }
       ],
       "properties": {
@@ -109,29 +109,29 @@
       "UUID": "6909",
       "datastructure": [
         {
+          "description": "Outputs bitfield, all outputs this pattern will use are indicated",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Outputs bitfield, all outputs this pattern will use are indicated"
+          "count": 1
         },
         {
+          "description": "Reserved for future use, set to 0",
           "datatype": "uint8",
-          "count": 1,
-          "description": "Reserved for future use, set to 0"
+          "count": 1
         },
         {
+          "description": "Set playback status: 0xFF - Stop, deselect pattern; 0x01 - Play from beginning; 0x02 - Pause; 0x03 - Resume; 0x00 - No change",
           "datatype": "uint8",
-          "count": 1,
-          "description": "Set playback status: 0xFF - Stop, deselect pattern; 0x01 - Play from beginning; 0x02 - Pause; 0x03 - Resume; 0x00 - No change"
+          "count": 1
         },
         {
+          "description": "Pattern number to apply to selected outputs, 1-indexed, 0x00 for no change",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Pattern number to apply to selected outputs, 1-indexed, 0x00 for no change"
+          "count": 1
         },
         {
+          "description": "Pattern Adjust value, will be reset to zero when pattern changes",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Pattern Adjust value, will be reset to zero when pattern changes"
+          "count": 1
         }
       ],
       "properties": {
@@ -146,14 +146,14 @@
       "UUID": "690C",
       "datastructure": [
         {
+          "description": "Index at which to add pattern, 0 to append",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Index at which to add pattern, 0 to append"
+          "count": 1
         },
         {
+          "description": "Pattern bytes",
           "datatype": "uint8",
-          "count": null,
-          "description": "Pattern bytes"
+          "count": null
         }
       ],
       "properties": {
@@ -168,9 +168,9 @@
       "UUID": "690E",
       "datastructure": [
         {
+          "description": "Index of pattern to delete",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Index of pattern to delete"
+          "count": 1
         }
       ],
       "properties": {
@@ -185,9 +185,9 @@
       "UUID": "690F",
       "datastructure": [
         {
+          "description": "Delete ALL patterns on device. Value written to characteristic must be 0x6AAC.",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Delete ALL patterns on device. Value written to characteristic must be 0x6AAC."
+          "count": 1
         }
       ],
       "properties": {

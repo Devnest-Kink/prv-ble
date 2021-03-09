@@ -95,14 +95,14 @@
           "description": "0x01"
         },
         {
+          "description": "Fixed vendor ID (value TBD)",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Fixed vendor ID (value TBD)"
+          "count": 1
         },
         {
+          "description": "Device model & version, unique per manufacturer",
           "datatype": "uint16",
-          "count": 2,
-          "description": "Device model & version, unique per manufacturer"
+          "count": 2
         }
       ],
       "properties": {

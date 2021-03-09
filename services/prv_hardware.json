@@ -10,30 +10,40 @@
       "UUID": "6911",
       "datastructure": [
         {
+          "description": "Number of distinct output channels of the device",
           "datatype": "uint8",
-          "count": 1,
-          "description": "Number of distinct output channels of the device"
+          "count": 1
         },
         {
+          "description": "Number of distinct *types* of output channels of the device",
           "datatype": "uint8",
-          "count": 1,
-          "description": "Number of distinct *types* of output channels of the device"
+          "count": 1
         },
         {
+          "description": "One set of values per output *type*",
           "datatype": [
             {
+              "description": "Enum value describing type of output: 1: ERM, 2: LRA, 3: Linear Actuator, 4: TENS",
               "datatype": "uint16",
-              "count": 1,
-              "description": "Enum value describing type of output"
+              "count": 1
             },
             {
+              "description": "Bitfield of output channels of corresponding type",
               "datatype": "uint16",
-              "count": 1,
-              "description": "Bitfield of output channels of corresponding type"
+              "count": 1
+            },
+            {
+              "description": "Output Bounds Definition: 1: uint16 - maximum; 2: uint8 - maximum, uint8 - minimum",
+              "datatype": "uint16",
+              "count": 1
+            },
+            {
+              "description": "Output Bounds Maxima",
+              "datatype": "uint16",
+              "count": 1
             }
           ],
-          "count": null,
-          "description": "One bitfield/enum pair per output *type*"
+          "count": null
         }
       ],
       "properties": {
@@ -48,9 +58,9 @@
       "UUID": "6912",
       "datastructure": [
         {
+          "description": "One value per channel, in bitfield order",
           "datatype": "uint16",
-          "count": null,
-          "description": "One value per channel, in bitfield order"
+          "count": null
         }
       ],
       "properties": {
@@ -65,14 +75,14 @@
       "UUID": "6913",
       "datastructure": [
         {
+          "description": "Output bounds value to set on selected channels",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Output bounds value to set on selected channels"
+          "count": 1
         },
         {
+          "description": "Bitfield of channels to set output level on",
           "datatype": "uint16",
-          "count": 1,
-          "description": "Bitfield of channels to set output level on"
+          "count": 1
         }
       ],
       "properties": {

@@ -10,9 +10,9 @@
       "UUID": "2A19",
       "datastructure": [
         {
+          "description": "Integer from 0 to 100, as a percentage",
           "datatype": "uint8",
-          "count": 1,
-          "description": "Integer from 0 to 100, as a percentage"
+          "count": 1
         },
       ],
       "properties": {
