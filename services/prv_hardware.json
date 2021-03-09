@@ -24,13 +24,13 @@
             {
               "datatype": "uint16",
               "count": 1,
-              "description": "Bitfield of output channels of corresponding type"
+              "description": "Enum value describing type of output"
             },
             {
               "datatype": "uint16",
               "count": 1,
-              "description": "Enum value describing type of output"
-            },
+              "description": "Bitfield of output channels of corresponding type"
+            }
           ],
           "count": null,
           "description": "One bitfield/enum pair per output *type*"
@@ -44,7 +44,7 @@
       }
     },
     {
-      "name": "Output Power Levels",
+      "name": "Output Bounds",
       "UUID": "6912",
       "datastructure": [
         {
@@ -61,18 +61,18 @@
       }
     },
     {
-      "name": "Set Output Power Level",
+      "name": "Set Output Bounds",
       "UUID": "6913",
       "datastructure": [
         {
           "datatype": "uint16",
           "count": 1,
-          "description": "Bitfield of channels to set output level on"
+          "description": "Output bounds value to set on selected channels"
         },
         {
           "datatype": "uint16",
           "count": 1,
-          "description": "Output level value to set on selected channels"
+          "description": "Bitfield of channels to set output level on"
         }
       ],
       "properties": {
