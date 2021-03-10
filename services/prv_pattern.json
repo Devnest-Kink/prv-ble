@@ -89,8 +89,13 @@
               "count": 1
             },
             {
-              "description": "Pattern Adjust value",
-              "datatype": "uint16",
+              "description": "Pattern Input value",
+              "datatype": "uint8",
+              "count": 1
+            },
+            {
+              "description": "Pattern Output value",
+              "datatype": "uint8",
               "count": 1
             }
           ],
@@ -124,13 +129,18 @@
           "count": 1
         },
         {
-          "description": "Pattern number to apply to selected outputs, 1-indexed, 0x00 for no change",
+          "description": "Pattern number to apply to selected outputs, 1-indexed, 0 for no change",
           "datatype": "uint16",
           "count": 1
         },
         {
-          "description": "Pattern Adjust value, will be reset to zero when pattern changes",
-          "datatype": "uint16",
+          "description": "Pattern Input value",
+          "datatype": "uint8",
+          "count": 1
+        },
+        {
+          "description": "Padding, set to 0",
+          "datatype": "uint8",
           "count": 1
         }
       ],
