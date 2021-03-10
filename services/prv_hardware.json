@@ -23,7 +23,7 @@
           "description": "One set of values per output *type*",
           "datatype": [
             {
-              "description": "Enum value describing type of output: 1: ERM, 2: LRA, 3: Linear Actuator, 4: TENS",
+              "description": "Enum value describing type of output: 1: ERM, 2: LRA, 3: Linear Actuator, 4: TENS, 5: LED",
               "datatype": "uint16",
               "count": 1
             },
@@ -33,7 +33,7 @@
               "count": 1
             },
             {
-              "description": "Output Bounds Definition: 1: uint16 - maximum; 2: uint8 - maximum, uint8 - minimum",
+              "description": "Output Bounds Definition: 1: uint16 - maximum; 2: uint8 - maximum, uint8 - minimum, 3: RGB565 - maximum",
               "datatype": "uint16",
               "count": 1
             },
