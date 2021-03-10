@@ -33,8 +33,10 @@ A 'playback report' consists of eight bytes, organized sequentially (little-endi
 * Byte 2: Reserved for future use, will be 0.
 * Byte 3: One of the following playback status values
   * `0xFF` - Playback stopped, no pattern selected (next two bytes will be `0x0000`), output disabled
-  * `0x01` - Pattern playing
+  * `0x01` - Pattern playing; once pattern finishes, pattern with next highest index will play,
+    resetting to index 1 after maximum pattern index
   * `0x02` - Pattern paused during playback, associated outputs are inactive
+  * `0x09` - Pattern playing, will repeat from beginning after finishing
 * Bytes 4 & 5: `uint16` index of the pattern, if any, being played on the indicated outputs, or 0 if stopped
 * Byte 6: `uint8` value provided by the user as input to the pattern, usually to adjust pattern behavior
 * Byte 7: `uint8` value set by the pattern
@@ -46,10 +48,14 @@ This Characteristic uses the same 'playback report' data format as Playback Stat
 * Byte 2: Reserved for future use, set to 0.
 * Byte 3: One of the following opcodes:
   * `0x00` - No change in playback status
-  * `0x01` - Play a pattern from the beginning. If no pattern is provided as part of this write,
-    restart current pattern from the beginning. This also sets Pattern Adjust to zero unless otherwise specified.
-  * `0x02` - Pause current playback. Progress and Pattern Adjust value are preserved.
+  * `0x01` - Play a pattern from the beginning, followed sequentially by the other patterns on the device.
+    If no pattern is provided as part of this write, restart current pattern from the beginning.
+    This also sets Pattern Input to zero.
+  * `0x02` - Pause current playback. Progress and Pattern Input value are preserved.
   * `0x03` - Resume from paused state.
+  * `0x08` - Toggle repeating of current pattern;
+    causes playback status values to alternate between `0x01` and `0x09`, doesn't change pattern state.
+  * `0x09` - Repeatedly play selected pattern from the beginning.
   * `0xFF` - Stop playback, deselect pattern. Associated device outputs are disabled.
 * Bytes 4 & 5: `uint16` index of the pattern, if any, to be played on the indicated outputs, or 0 for no change
 * Byte 6: `uint8` value provided by the user as input to the pattern, usually to adjust pattern behavior.
