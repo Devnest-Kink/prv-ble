@@ -74,12 +74,12 @@
               "count": 1
             },
             {
-              "description": "Reserved for future use, will be 0",
+              "description": "Playback status: 0xFF - Stopped, no pattern; 0x01 - Playing; 0x02 - Paused; 0x09 - Repeating",
               "datatype": "uint8",
               "count": 1
             },
             {
-              "description": "Playback status: 0xFF - Stopped, no pattern; 0x01 - Playing; 0x02 - Paused; 0x09 - Repeating",
+              "description": "Reserved for future use, will be 0",
               "datatype": "uint8",
               "count": 1
             },
@@ -119,12 +119,12 @@
           "count": 1
         },
         {
-          "description": "Reserved for future use, set to 0",
+          "description": "Set playback status: 0xFF - Stop, deselect pattern; 0x01 - Play sequentially; 0x02 - Pause; 0x03 - Resume; 0x08 - Toggle repeat; 0x09 - Play repeating; 0x00 - No change",
           "datatype": "uint8",
           "count": 1
         },
         {
-          "description": "Set playback status: 0xFF - Stop, deselect pattern; 0x01 - Play sequentially; 0x02 - Pause; 0x03 - Resume; 0x08 - Toggle repeat; 0x09 - Play repeating; 0x00 - No change",
+          "description": "Reserved for future use, set to 0",
           "datatype": "uint8",
           "count": 1
         },

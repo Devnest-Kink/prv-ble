@@ -30,13 +30,13 @@ though some information may be redundant when a pattern is playing on multiple o
 A 'playback report' consists of eight bytes, organized sequentially (little-endian) into the following fields:
 * Bytes 0 & 1: `uint16` bitfield indicating which outputs are grouped together and used by a given pattern.
   At least one bit will be set in each report and will correlate to the sequence of reports.
-* Byte 2: Reserved for future use, will be 0.
-* Byte 3: One of the following playback status values
+* Byte 2: One of the following playback status values
   * `0xFF` - Playback stopped, no pattern selected (next two bytes will be `0x0000`), output disabled
   * `0x01` - Pattern playing; once pattern finishes, pattern with next highest index will play,
     resetting to index 1 after maximum pattern index
   * `0x02` - Pattern paused during playback, associated outputs are inactive
   * `0x09` - Pattern playing, will repeat from beginning after finishing
+* Byte 3: Reserved for future use, will be 0.
 * Bytes 4 & 5: `uint16` index of the pattern, if any, being played on the indicated outputs, or 0 if stopped
 * Byte 6: `uint8` value provided by the user as input to the pattern, usually to adjust pattern behavior
 * Byte 7: `uint8` value set by the pattern
@@ -45,8 +45,7 @@ A 'playback report' consists of eight bytes, organized sequentially (little-endi
 Writes to this Characteristic can change the state of pattern playback on the device.
 This Characteristic uses the same 'playback report' data format as Playback Status, but with minor adjustments:
 * Bytes 0 & 1: This `uint16` bitfield indicates which outputs the provided changes are applied to.
-* Byte 2: Reserved for future use, set to 0.
-* Byte 3: One of the following opcodes:
+* Byte 2: One of the following opcodes:
   * `0x00` - No change in playback status
   * `0x01` - Play a pattern from the beginning, followed sequentially by the other patterns on the device.
     If no pattern is provided as part of this write, restart current pattern from the beginning.
@@ -57,6 +56,7 @@ This Characteristic uses the same 'playback report' data format as Playback Stat
     causes playback status values to alternate between `0x01` and `0x09`, doesn't change pattern state.
   * `0x09` - Repeatedly play selected pattern from the beginning.
   * `0xFF` - Stop playback, deselect pattern. Associated device outputs are disabled.
+* Byte 3: Reserved for future use, set to 0.
 * Bytes 4 & 5: `uint16` index of the pattern, if any, to be played on the indicated outputs, or 0 for no change
 * Byte 6: `uint8` value provided by the user as input to the pattern, usually to adjust pattern behavior.
   * Note: When playing a different pattern than the current selection, input value is reset to zero.
