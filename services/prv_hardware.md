@@ -61,11 +61,11 @@ These bytes are interpreted according to the enum defined in the previous two by
 The plug has 1x e-stim output, 1x rotational vibration output, and 1x 3-color LED output,
 thus it's characteristic will be the following 26 bytes: 1 + 1 + 3*(2 + 2 + 2 + 2):
 
-`0x02 0x02 0x0004 0x0001 0x0001 0x0FFF 0x0001 0x0002 0x0001 0x0069 0x0005 0x0004 0x0003 0xFFFF`
+`0x03 0x03 0x0004 0x0001 0x0001 0x0FFF 0x0001 0x0002 0x0001 0x0069 0x0005 0x0004 0x0003 0xFFFF`
 
 * Counts
-  * `0x02` - Two output channels on plug
-  * `0x02` - Two *types* of output channels on plug
+  * `0x03` - Two output channels on plug
+  * `0x03` - Two *types* of output channels on plug
 * TENS Output Definition
   * `0x0004` - The next 6 bytes describe the TENS output
   * `0x0001` - Bitfield indicating channel `1 << 0` is a TENS output
