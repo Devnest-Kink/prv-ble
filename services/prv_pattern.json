@@ -74,28 +74,23 @@
               "count": 1
             },
             {
-              "description": "Playback status: 0xFF - Stopped, no pattern; 0x01 - Playing; 0x02 - Paused; 0x09 - Repeating",
-              "datatype": "uint8",
-              "count": 1
-            },
-            {
-              "description": "Reserved for future use, will be 0",
+              "description": "Playback status: 0xFF - Stopped, no pattern; 0x01 - Playing; 0x02 - Paused",
               "datatype": "uint8",
               "count": 1
             },
             {
               "description": "Pattern number playing on indicated outputs, 1-indexed",
-              "datatype": "uint16",
+              "datatype": "uint8",
               "count": 1
             },
             {
               "description": "Pattern Input value",
-              "datatype": "uint8",
+              "datatype": "uint16",
               "count": 1
             },
             {
               "description": "Pattern Output value",
-              "datatype": "uint8",
+              "datatype": "uint16",
               "count": 1
             }
           ],
@@ -124,23 +119,18 @@
           "count": 1
         },
         {
-          "description": "Reserved for future use, set to 0",
-          "datatype": "uint8",
-          "count": 1
-        },
-        {
           "description": "Pattern number to apply to selected outputs, 1-indexed, 0 for no change",
-          "datatype": "uint16",
+          "datatype": "uint8",
           "count": 1
         },
         {
           "description": "Pattern Input value",
-          "datatype": "uint8",
+          "datatype": "uint16",
           "count": 1
         },
         {
           "description": "Padding, set to 0",
-          "datatype": "uint8",
+          "datatype": "uint16",
           "count": 1
         }
       ],
