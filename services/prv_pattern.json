@@ -1,13 +1,12 @@
 {
-  "baseUUID": "3C630000-FDCB-4558-B637-DF8901CE7E8A",
   "service": {
     "name": "PRV Pattern Service",
-    "UUID": "6900"
+    "UUID": "00006900-FDCB-4558-B637-DF8901CE7E8A"
   },
   "characteristics": [
     {
       "name": "Pattern Count",
-      "UUID": "6901",
+      "UUID": "00006901-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "description": "Number of patterns stored on device",
@@ -24,7 +23,7 @@
     },
     {
       "name": "Pattern Metadata",
-      "UUID": "6902",
+      "UUID": "00006902-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "description": "Index of pattern for metadata",
@@ -46,7 +45,7 @@
     },
     {
       "name": "Pattern Metadata Selector",
-      "UUID": "6903",
+      "UUID": "00006903-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "description": "Set index of pattern info to display on Pattern Metadata Characteristic",
@@ -63,7 +62,7 @@
     },
     {
       "name": "Pattern Playback Status",
-      "UUID": "6908",
+      "UUID": "00006908-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "description": "One set of values per device output",
@@ -106,7 +105,7 @@
     },
     {
       "name": "Pattern Playback Control",
-      "UUID": "6909",
+      "UUID": "00006909-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "description": "Outputs bitfield, all outputs this pattern will use are indicated",
@@ -143,7 +142,7 @@
     },
     {
       "name": "Add Pattern",
-      "UUID": "690C",
+      "UUID": "0000690C-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "description": "Index at which to add pattern, 0 to append",
@@ -165,7 +164,7 @@
     },
     {
       "name": "Delete Pattern",
-      "UUID": "690E",
+      "UUID": "0000690E-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "description": "Index of pattern to delete",
@@ -182,7 +181,7 @@
     },
     {
       "name": "Delete ALL Patterns",
-      "UUID": "690F",
+      "UUID": "0000690F-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "description": "Delete ALL patterns on device. Value written to characteristic must be 0x6AAC.",

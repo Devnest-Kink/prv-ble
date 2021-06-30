@@ -1,13 +1,12 @@
 {
-  "baseUUID": "3C630000-FDCB-4558-B637-DF8901CE7E8A",
   "service": {
     "name": "PRV Hardware Service",
-    "UUID": "6910"
+    "UUID": "00006910-FDCB-4558-B637-DF8901CE7E8A"
   },
   "characteristics": [
     {
       "name": "Output Definitions",
-      "UUID": "6911",
+      "UUID": "00006911-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "description": "Number of distinct output channels of the device",
@@ -55,7 +54,7 @@
     },
     {
       "name": "Output Bounds",
-      "UUID": "6912",
+      "UUID": "00006912-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "description": "One value per channel, in bitfield order",
@@ -72,7 +71,7 @@
     },
     {
       "name": "Set Output Bounds",
-      "UUID": "6913",
+      "UUID": "00006913-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "description": "Output bounds value to set on selected channels",
