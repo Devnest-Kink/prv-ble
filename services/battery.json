@@ -12,7 +12,7 @@
           "description": "Integer from 0 to 100, as a percentage",
           "datatype": "uint8",
           "count": 1
-        },
+        }
       ],
       "properties": {
         "read": true,

@@ -1,9 +1,9 @@
 {
   "name": "Deep by Kink E-Stim Plug",
   "services": [
-    "device_information.json",
     "battery.json",
     "bond_management.json",
+    "device_information.json",
     "prv_pattern.json",
     "prv_hardware.json"
   ]

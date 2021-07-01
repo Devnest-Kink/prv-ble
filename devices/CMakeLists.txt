@@ -1,5 +1,5 @@
 file(GLOB DEVICES *.json)
-foreach(FILE IN LISTS DEVICES)
+foreach (FILE IN LISTS DEVICES)
     get_filename_component(DEVICE ${FILE} NAME)
     set(OUT_FILE "${CMAKE_CURRENT_BINARY_DIR}/${DEVICE}.obj")
 
@@ -19,13 +19,13 @@ foreach(FILE IN LISTS DEVICES)
     # 000000bd g       *ABS*  00000000 _binary_plug_json_size
 
 
-add_custom_command(OUTPUT "${OUT_FILE}"
+    add_custom_command(OUTPUT "${OUT_FILE}"
             COMMAND "${CMAKE_OBJCOPY}" --input-target binary --output-target elf32-littlearm --binary-architecture arm ${DEVICE} ${OUT_FILE}
             DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/${DEVICE}"
             WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
             )
     list(APPEND DEVICES_FILES "${OUT_FILE}")
-endforeach()
+endforeach ()
 add_library(prv_devices OBJECT ${DEVICES_FILES})
 
 # add_library won't actually pass binary files to the linker (only files its compiled), so link against them directly.
