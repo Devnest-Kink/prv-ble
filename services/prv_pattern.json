@@ -1,16 +1,26 @@
 {
   "service": {
     "name": "PRV Pattern Service",
-    "UUID": "00006900-FDCB-4558-B637-DF8901CE7E8A"
+    "UUID": "00006910-FDCB-4558-B637-DF8901CE7E8A"
   },
   "characteristics": [
     {
-      "name": "Pattern Count",
-      "UUID": "00006901-FDCB-4558-B637-DF8901CE7E8A",
+      "name": "Pattern Service Metadata",
+      "UUID": "00006911-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
-          "description": "Number of patterns stored on device",
           "datatype": "uint16",
+          "description": "Pattern Service version",
+          "count": 1
+        },
+        {
+          "datatype": "uint16",
+          "description": "Pattern API version",
+          "count": 1
+        },
+        {
+          "datatype": "uint16",
+          "description": "Number of patterns stored on device",
           "count": 1
         }
       ],
@@ -23,16 +33,16 @@
     },
     {
       "name": "Pattern Metadata",
-      "UUID": "00006902-FDCB-4558-B637-DF8901CE7E8A",
+      "UUID": "00006912-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
+          "datatype": "uint8",
           "description": "Index of pattern for metadata",
-          "datatype": "uint16",
           "count": 1
         },
         {
-          "description": "Pattern metadata (see pattern_schema.json)",
           "datatype": "uint8",
+          "description": "Pattern metadata (see pattern_schema.json)",
           "count": null
         }
       ],
@@ -45,11 +55,11 @@
     },
     {
       "name": "Pattern Metadata Selector",
-      "UUID": "00006903-FDCB-4558-B637-DF8901CE7E8A",
+      "UUID": "00006913-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
+          "datatype": "uint8",
           "description": "Set index of pattern info to display on Pattern Metadata Characteristic",
-          "datatype": "uint16",
           "count": 1
         }
       ],
@@ -62,34 +72,34 @@
     },
     {
       "name": "Pattern Playback Status",
-      "UUID": "00006908-FDCB-4558-B637-DF8901CE7E8A",
+      "UUID": "00006918-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
-          "description": "One set of values per device output",
+          "description": "One set of values per device output channel",
           "datatype": [
             {
-              "description": "Outputs bitfield, all outputs this pattern is using are indicated",
               "datatype": "uint16",
+              "description": "Channels bitfield, if channel is part of a link, all linked channels are indicated",
               "count": 1
             },
             {
+              "datatype": "uint8",
               "description": "Playback status: 0xFF - Stopped, no pattern; 0x01 - Playing; 0x02 - Paused",
-              "datatype": "uint8",
               "count": 1
             },
             {
-              "description": "Pattern number playing on indicated outputs, 1-indexed",
               "datatype": "uint8",
+              "description": "Pattern number playing on indicated channels, 1-indexed",
               "count": 1
             },
             {
+              "datatype": "uint16",
               "description": "Pattern Input value",
-              "datatype": "uint16",
               "count": 1
             },
             {
-              "description": "Pattern Output value",
               "datatype": "uint16",
+              "description": "Pattern Output value",
               "count": 1
             }
           ],
@@ -105,31 +115,31 @@
     },
     {
       "name": "Pattern Playback Control",
-      "UUID": "00006909-FDCB-4558-B637-DF8901CE7E8A",
+      "UUID": "00006919-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
-          "description": "Outputs bitfield, all outputs this pattern will use are indicated",
           "datatype": "uint16",
+          "description": "Channels bitfield, all channels this change applies to are indicated; when unlinking, the lowest-indexed channel (and any other channels remaining linked to it) is unaffected",
           "count": 1
         },
         {
-          "description": "Set playback status: 0xFF - Stop, deselect pattern; 0x01 - Play sequentially; 0x02 - Pause; 0x03 - Resume; 0x08 - Toggle repeat; 0x09 - Play repeating; 0x00 - No change",
           "datatype": "uint8",
+          "description": "Change playback status: 0xFF - Stop, deselect pattern; 0x01 - Play sequentially; 0x02 - Pause; 0x03 - Resume; 0x08 - Toggle repeat; 0x09 - Play repeating; 0x00 - No change",
           "count": 1
         },
         {
-          "description": "Pattern number to apply to selected outputs, 1-indexed, 0 for no change",
           "datatype": "uint8",
+          "description": "Pattern number to apply to selected channels, 1-indexed, 0 for no change",
           "count": 1
         },
         {
+          "datatype": "uint16",
           "description": "Pattern Input value",
-          "datatype": "uint16",
           "count": 1
         },
         {
-          "description": "Padding, set to 0",
           "datatype": "uint16",
+          "description": "When unlinking indicated channel(s) from other channels, this bitfield identifies the other channel(s) that are no longer linked to indicated channel(s)",
           "count": 1
         }
       ],
@@ -142,16 +152,16 @@
     },
     {
       "name": "Add Pattern",
-      "UUID": "0000690C-FDCB-4558-B637-DF8901CE7E8A",
+      "UUID": "0000691C-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
-          "description": "Index at which to add pattern, 0 to append",
           "datatype": "uint16",
+          "description": "Index at which to add pattern, 0 to append",
           "count": 1
         },
         {
-          "description": "Pattern bytes",
           "datatype": "uint8",
+          "description": "Pattern bytes",
           "count": null
         }
       ],
@@ -164,11 +174,11 @@
     },
     {
       "name": "Delete Pattern",
-      "UUID": "0000690E-FDCB-4558-B637-DF8901CE7E8A",
+      "UUID": "0000691E-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
-          "description": "Index of pattern to delete",
           "datatype": "uint16",
+          "description": "Index of pattern to delete",
           "count": 1
         }
       ],
@@ -181,11 +191,11 @@
     },
     {
       "name": "Delete ALL Patterns",
-      "UUID": "0000690F-FDCB-4558-B637-DF8901CE7E8A",
+      "UUID": "00006AAC-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
-          "description": "Delete ALL patterns on device. Value written to characteristic must be 0x6AAC.",
           "datatype": "uint16",
+          "description": "Delete ALL patterns on device. Value written to characteristic must be 0x6AAC.",
           "count": 1
         }
       ],
