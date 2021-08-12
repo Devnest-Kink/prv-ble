@@ -12,4 +12,4 @@ target_include_directories(app PRIVATE
         ${PRV_BLE_BASE}/include
         )
 
-include(gen_prv_UUIDs.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/gen_prv_UUIDs.cmake)
