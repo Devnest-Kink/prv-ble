@@ -32,12 +32,12 @@
               "count": 1
             },
             {
-              "description": "Output Bounds Definition: 1: uint16 - maximum; 2: uint8 - maximum, uint8 - minimum, 3: RGB565 - maximum",
+              "description": "Output Levels Definition: 1: uint16 - maximum; 2: uint8 - minimum, uint8 - maximum, 3: RGB565 - maximum",
               "datatype": "uint16",
               "count": 1
             },
             {
-              "description": "Output Bounds Maxima",
+              "description": "Output Levels Maxima",
               "datatype": "uint16",
               "count": 1
             }
@@ -53,7 +53,7 @@
       }
     },
     {
-      "name": "Output Bounds",
+      "name": "Output Levels",
       "UUID": "00006902-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
@@ -70,16 +70,16 @@
       }
     },
     {
-      "name": "Set Output Bounds",
+      "name": "Set Output Levels",
       "UUID": "00006903-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
-          "description": "Output bounds value to set on selected channels",
+          "description": "Bitfield of channels to set output level on",
           "datatype": "uint16",
           "count": 1
         },
         {
-          "description": "Bitfield of channels to set output level on",
+          "description": "Output Level value to set on selected channels",
           "datatype": "uint16",
           "count": 1
         }
