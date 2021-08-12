@@ -1,26 +1,26 @@
 {
   "service": {
-    "name": "PRV Pattern Service",
+    "name": "PRV Program Service",
     "UUID": "00006910-FDCB-4558-B637-DF8901CE7E8A"
   },
   "characteristics": [
     {
-      "name": "Pattern Service Metadata",
+      "name": "Program Service Metadata",
       "UUID": "00006911-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "datatype": "uint16",
-          "description": "Pattern Service version",
+          "description": "Program Service version",
           "count": 1
         },
         {
           "datatype": "uint16",
-          "description": "Pattern API version",
+          "description": "Program API version",
           "count": 1
         },
         {
           "datatype": "uint16",
-          "description": "Number of patterns stored on device",
+          "description": "Number of Programs stored on device",
           "count": 1
         }
       ],
@@ -32,17 +32,17 @@
       }
     },
     {
-      "name": "Pattern Metadata",
+      "name": "Program Metadata",
       "UUID": "00006912-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "datatype": "uint8",
-          "description": "Index of pattern for metadata",
+          "description": "Index of Program for metadata",
           "count": 1
         },
         {
           "datatype": "uint8",
-          "description": "Pattern metadata (see pattern_schema.json)",
+          "description": "Program metadata (see Program_schema.json)",
           "count": null
         }
       ],
@@ -54,12 +54,12 @@
       }
     },
     {
-      "name": "Pattern Metadata Selector",
+      "name": "Program Metadata Selector",
       "UUID": "00006913-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "datatype": "uint8",
-          "description": "Set index of pattern info to display on Pattern Metadata Characteristic",
+          "description": "Set index of Program info to display on Program Metadata Characteristic",
           "count": 1
         }
       ],
@@ -71,7 +71,7 @@
       }
     },
     {
-      "name": "Pattern Playback Status",
+      "name": "Program Playback Status",
       "UUID": "00006918-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
@@ -84,22 +84,22 @@
             },
             {
               "datatype": "uint8",
-              "description": "Playback status: 0xFF - Stopped, no pattern; 0x01 - Playing; 0x02 - Paused",
+              "description": "Playback status: 0xFF - Stopped, no Program; 0x01 - Playing; 0x02 - Paused",
               "count": 1
             },
             {
               "datatype": "uint8",
-              "description": "Pattern number playing on indicated channels, 1-indexed",
+              "description": "Program number playing on indicated channels, 1-indexed",
               "count": 1
             },
             {
               "datatype": "uint16",
-              "description": "Pattern Input value",
+              "description": "Program Input value",
               "count": 1
             },
             {
               "datatype": "uint16",
-              "description": "Pattern Output value",
+              "description": "Program Output value",
               "count": 1
             }
           ],
@@ -114,7 +114,7 @@
       }
     },
     {
-      "name": "Pattern Playback Control",
+      "name": "Program Control",
       "UUID": "00006919-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
@@ -124,22 +124,22 @@
         },
         {
           "datatype": "uint8",
-          "description": "Change playback status: 0xFF - Stop, deselect pattern; 0x01 - Play sequentially; 0x02 - Pause; 0x03 - Resume; 0x08 - Toggle repeat; 0x09 - Play repeating; 0x00 - No change",
+          "description": "Change execution status: 0xFF - Stop, deselect Program; 0x01 - Run Program; 0x02 - Pause; 0x03 - Resume; 0x00 - No change",
           "count": 1
         },
         {
           "datatype": "uint8",
-          "description": "Pattern number to apply to selected channels, 1-indexed, 0 for no change",
+          "description": "Program number to apply to selected channels, 1-indexed, 0 for no change",
           "count": 1
         },
         {
           "datatype": "uint16",
-          "description": "Pattern Input value",
+          "description": "Program Input value",
           "count": 1
         },
         {
           "datatype": "uint16",
-          "description": "When unlinking indicated channel(s) from other channels, this bitfield identifies the other channel(s) that are no longer linked to indicated channel(s)",
+          "description": "When unlinking indicated channel(s) from other channels, this bitfield identifies the other channel(s) that are no longer linked to indicated channel(s); otherwise ignored",
           "count": 1
         }
       ],
@@ -151,17 +151,17 @@
       }
     },
     {
-      "name": "Add Pattern",
+      "name": "Add Program",
       "UUID": "0000691C-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "datatype": "uint16",
-          "description": "Index at which to add pattern, 0 to append",
+          "description": "Index at which to add Program, 0 to append",
           "count": 1
         },
         {
           "datatype": "uint8",
-          "description": "Pattern bytes",
+          "description": "Program bytes",
           "count": null
         }
       ],
@@ -173,12 +173,12 @@
       }
     },
     {
-      "name": "Delete Pattern",
+      "name": "Delete Program",
       "UUID": "0000691E-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "datatype": "uint16",
-          "description": "Index of pattern to delete",
+          "description": "Index of Program to delete",
           "count": 1
         }
       ],
@@ -190,12 +190,12 @@
       }
     },
     {
-      "name": "Delete ALL Patterns",
+      "name": "Delete ALL Programs",
       "UUID": "00006AAC-FDCB-4558-B637-DF8901CE7E8A",
       "datastructure": [
         {
           "datatype": "uint16",
-          "description": "Delete ALL patterns on device. Value written to characteristic must be 0x6AAC.",
+          "description": "Delete ALL Programs on device. Value written to characteristic must be 0x6AAC.",
           "count": 1
         }
       ],
