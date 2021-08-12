@@ -11,7 +11,7 @@ add_custom_command(
         OUTPUT ${OUTPUT_FILE}
         COMMAND
         ${PYTHON_EXECUTABLE}
-        ${PRV_BLE_BASE}/gen_macros.py
+        ${PRV_BLE_BASE}/lib/firmware/gen_macros.py
         ${PRV_BLE_BASE}/devices/${DEVICE}.json
         ${OUTPUT_FILE}
         DEPENDS ${PRV_BLE_BASE}/devices/${DEVICE}.json
