@@ -4,12 +4,6 @@ import argparse
 import pathlib
 import json
 
-defines = []
-
-
-def define(name, value):
-    defines.append(f'#define {f"{name}":<64}"{value}"')
-
 
 parser = argparse.ArgumentParser('Generate C header files with macros containing BLE UUIDs used by a device.')
 parser.add_argument('infile', help='Name of device JSON file to parse.')
@@ -22,17 +16,25 @@ infile = pathlib.Path(args.infile).resolve(True)
 with open(infile, 'r') as fp:
     device = json.load(fp)
 
-define("CANONICAL_NAME", device['name'])
+defines = [f'#define {"DEVICE_NAME":<64}{device["name"]}']
+
+
+def define(name, uuid, size):
+    csv = ", ".join([f'0x{i}' for i in uuid.split('-')])
+    X = f'BT_UUID_DECLARE_{size}(BT_UUID_{size}_ENCODE({csv})'
+    defines.append(f'#define {f"{name}":<64}{X})')
+
 
 for service_file in device['services']:
+    bits = 128 if service_file.startswith('prv') else 16
     with open(pathlib.Path(infile.parent.parent, 'services', service_file).resolve(True), 'r') as fp:
         service = json.load(fp)
 
     service_name = service['service']['name'].upper().replace(' ', '_')
-    define(f'{service_name}_UUID', service['service']['UUID'])
+    define(f'{service_name}_UUID', service['service']['UUID'], bits)
     for characteristic in service['characteristics']:
         characteristic_name = f"{service_name}_{characteristic['name'].upper().replace(' ', '_')}_UUID"
-        define(characteristic_name, characteristic['UUID'])
+        define(characteristic_name, characteristic['UUID'], bits)
 
 outfile = pathlib.Path(args.outfile)
 if not outfile.exists():
