@@ -65,7 +65,7 @@ thus it's characteristic will be the following 26 bytes: 1 + 1 + 3*(2 + 2 + 2 + 
 
 * Counts
   * `0x04` - Four output channels on plug
-  * `0x03` - Two *types* of output channels on plug
+  * `0x03` - Three *types* of output channels on plug
 * Vibrator Output Definition
   * `0x0001` - The next 6 bytes describe an eccentric rotational mass vibrator output
   * `0x0001` - Bitfield indicating channel 1 is a rotational vibrator output
