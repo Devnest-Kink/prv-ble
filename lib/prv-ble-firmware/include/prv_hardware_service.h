@@ -6,6 +6,7 @@
 #define PRV_HARDWARE_SERVICE_H
 
 #include <zephyr.h>
+#include "prv_device.h"
 
 typedef uint16_t output_level_t;
 
@@ -35,13 +36,21 @@ typedef struct __packed {
 typedef struct __packed {
     uint8_t output_channels_count;
     uint8_t output_types_count;
-    prv_output_type_definition_t output_type_definitions[];
+    prv_output_type_definition_t output_type_definitions[CHANNEL_TYPE_COUNT];
 } prv_output_definitions_characteristic_t;
 
-typedef struct {
-    prv_output_definitions_characteristic_t *output_definitions_characteristic;
-} prv_hw_service_init_t;
+/** Called when values are sent to Characteristic */
+typedef int (*prv_hw_service_set_output_level_callback_t)(void *conn, uint16_t bitfield, output_level_t level);
 
-int prv_hardware_service_init(prv_hw_service_init_t *init);
+/** Statically define struct, pass to init for verification. */
+typedef struct {
+    prv_output_definitions_characteristic_t const *const output_definitions_characteristic;
+    prv_hw_service_set_output_level_callback_t callback;
+    output_level_t volatile output_levels[CHANNEL_COUNT];
+} prv_hw_service_t;
+
+int prv_hardware_service_init(prv_hw_service_t *init);
+
+int prv_hw_service_update_levels(output_level_t const *levels);
 
 #endif //PRV_HARDWARE_SERVICE_H
