@@ -39,7 +39,14 @@ typedef struct __packed {
     prv_output_type_definition_t output_type_definitions[CHANNEL_TYPE_COUNT];
 } prv_output_definitions_characteristic_t;
 
-/** Called when values are sent to Characteristic */
+/** Called when values are written to Set Output Level Characteristic
+ *
+ * @param[in] conn      Opaque pointer to the connection
+ * @param[in] bitfield  Value written to Characteristic
+ * @param[in] level     Value written to Characteristic
+ *
+ * @return  0 if the provided values are valid, -EINVAL if invalid values provided
+ * */
 typedef int (*prv_hw_service_set_output_level_callback_t)(void *conn, uint16_t bitfield, output_level_t level);
 
 /** Statically define struct, pass to init for verification. */
