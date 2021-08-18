@@ -26,6 +26,7 @@ add_custom_command(
         ${PRV_BLE_BASE}/devices/${DEVICE}.json
         ${OUTPUT_FILE}
         DEPENDS ${PRV_BLE_BASE}/devices/${DEVICE}.json
+        DEPENDS ${PRV_BLE_BASE}/lib/prv-ble-firmware/gen_macros.py
 )
 
 add_dependencies(app ${GENERATED_TARGET_NAME})

@@ -16,13 +16,15 @@ infile = pathlib.Path(args.infile).resolve(True)
 with open(infile, 'r') as fp:
     device = json.load(fp)
 
-defines = [f'#define {"DEVICE_NAME":<64}{device["name"]}']
+defines = [f'#define {"DEVICE_NAME":<64}"{device["name"]}"',
+           f'#define {"DEVICE_NAME_LEN":<64}(sizeof(DEVICE_NAME) - 1)']
 
 
 def define(name, uuid, size):
     csv = ", ".join([f'0x{i}' for i in uuid.split('-')])
-    X = f'BT_UUID_DECLARE_{size}(BT_UUID_{size}_ENCODE({csv})'
-    defines.append(f'#define {f"{name}":<64}{X})')
+    X = f'BT_UUID_{size}_ENCODE({csv})'
+    defines.append(f'#define {f"{name}_VAL":<64}{X}')
+    defines.append(f'#define {f"{name}":<64}BT_UUID_DECLARE_{size}({name}_VAL)')
 
 
 for service_file in device['services']:
