@@ -14,6 +14,7 @@
 
 LOG_MODULE_REGISTER(prv_ble, LOG_LEVEL_DBG);
 
+
 static prv_hw_service_t *service = NULL;
 
 
@@ -61,7 +62,7 @@ static ssize_t output_levels_read(struct bt_conn *conn,
 }
 
 
-#define SET_OUTPUT_LEVEL_SIZE (2 * sizeof(uint16_t))
+#define SET_OUTPUT_LEVEL_SIZE (sizeof(bitfield_t) + sizeof(output_level_t))
 static ssize_t write_set_output_levels(struct bt_conn *conn,
                                        struct bt_gatt_attr const *attr,
                                        void const *buf,
@@ -74,28 +75,36 @@ static ssize_t write_set_output_levels(struct bt_conn *conn,
     if (offset != 0) return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
     if (len != SET_OUTPUT_LEVEL_SIZE) return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
 
-    uint16_t bitfield = ((uint16_t *) buf)[0];
-    output_level_t level = ((uint16_t *) buf)[1];
+    bitfield_t const bitfield = ((uint16_t *) buf)[0];
+    output_level_t const level = ((uint16_t *) buf)[1];
+
+    // Invalid channel specified, abort before taking any action
+    if (__builtin_ffs(bitfield >> CHANNEL_COUNT)) BT_GATT_ERR(BT_ATT_ERR_VALUE_NOT_ALLOWED);
 
     LOG_DBG("%d: Setting output levels - bitfield: %d, level: %d", (int) conn, bitfield, level);
 
-    if (service->callback != NULL) {
-        int err = service->callback(conn, bitfield, level);
-        if (err) return BT_GATT_ERR(BT_ATT_ERR_VALUE_NOT_ALLOWED);
-    }
-
     bool notify = false;
+    error_t err = 0;
     for (int i = 0; i < CHANNEL_COUNT; ++i) {
         if (bitfield & (1U << i) && service->output_levels[i] != level) {
-            service->output_levels[i] = level;
-            notify = true;
+            output_level_t lvl = level;
+            if (service->level_func[i] != NULL) {
+                err = service->level_func[i](conn, bitfield, &lvl);
+            }
+            if (service->output_levels[i] != lvl) {
+                service->output_levels[i] = lvl;
+                notify = true;
+            }
+            if (err) break;
         }
     }
 
     if (notify) {
-        int err = prv_hw_service_update_levels((void *) service->output_levels);
-        if (err) LOG_DBG("Notify during write callback failed: %d", err);
+        error_t e = prv_hw_service_update_levels((void *) service->output_levels, 0);
+        if (e) LOG_DBG("Notify during write callback failed: %d", e);
     }
+
+    if (err) return BT_GATT_ERR(BT_ATT_ERR_VALUE_NOT_ALLOWED);
 
     // Returns: Number of bytes written, or in case of an error BT_GATT_ERR() with a specific ATT error code.
     return SET_OUTPUT_LEVEL_SIZE;
@@ -144,18 +153,20 @@ int prv_hardware_service_init(prv_hw_service_t *init) {
 }
 
 
-int prv_hw_service_update_levels(output_level_t const *levels) {
-    for (int i = 0; i < CHANNEL_COUNT; ++i) {
+int prv_hw_service_update_levels(output_level_t const *levels, size_t len) {
+    __ASSERT(len == CHANNEL_COUNT, "Invalid length: %d", len);
+
+    for (int i = 0; i < len; ++i) {
         service->output_levels[i] = levels[i];
     }
 
     struct bt_gatt_notify_params params = {0};
 
-    params.attr = &prv_hardware_service_definition.attrs[3];
-    params.data = levels;
-    params.len = sizeof(output_level_t) * CHANNEL_COUNT;
+    params.attr = &prv_hardware_service_definition.attrs[3];    // Send to CCC GATT attr, 4th in array
+    params.data = service->output_levels;
+    params.len = sizeof(output_level_t) * len;
 
-    int err = bt_gatt_notify_cb(NULL, &params);
+    error_t err = bt_gatt_notify_cb(NULL, &params);
     if (err) return err;
 
     return 0;
