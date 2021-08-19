@@ -79,7 +79,7 @@ static ssize_t write_set_output_levels(struct bt_conn *conn,
     output_level_t const level = ((uint16_t *) buf)[1];
 
     // Invalid channel specified, abort before taking any action
-    if (__builtin_ffs(bitfield >> CHANNEL_COUNT)) BT_GATT_ERR(BT_ATT_ERR_VALUE_NOT_ALLOWED);
+    if (__builtin_ffs(bitfield >> CHANNEL_COUNT)) return BT_GATT_ERR(BT_ATT_ERR_VALUE_NOT_ALLOWED);
 
     LOG_DBG("%d: Setting output levels - bitfield: %d, level: %d", (int) conn, bitfield, level);
 
