@@ -1,6 +1,6 @@
 {
   "service": {
-    "name": "PRV Hardware Service",
+    "name": "PRV Device Service",
     "UUID": "00006900-FDCB-4558-B637-DF8901CE7E8A"
   },
   "characteristics": [
@@ -22,7 +22,7 @@
           "description": "One set of values per output *type*",
           "datatype": [
             {
-              "description": "Enum value describing type of output: 1: ERM, 2: LRA, 3: Linear Actuator, 4: TENS, 5: LED",
+              "description": "Enum value describing type of output: 0: Data, 1: ERM, 2: LRA, 3: Linear Actuator, 4: TENS, 5: LED",
               "datatype": "uint16",
               "count": 1
             },

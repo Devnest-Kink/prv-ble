@@ -61,19 +61,19 @@ These bytes are interpreted according to the enum defined in the previous two by
 The plug has 2x TENS output, 1x rotational vibration output, and 1x 3-color LED output,
 thus it's characteristic will be the following 26 bytes: 1 + 1 + 3*(2 + 2 + 2 + 2):
 
-`0x04 0x03 0x0004 0x0003 0x0001 0x0FFF 0x0001 0x0001 0x0001 0x0069 0x0005 0x0004 0x0003 0xFFFF`
+`0x04 0x03 0x0004 0x0003 0x0001 0x0FFF 0x0001 0x0004 0x0001 0x0069 0x0005 0x0008 0x0003 0xFFFF`
 
 * Counts
   * `0x04` - Four output channels on plug
   * `0x03` - Three *types* of output channels on plug
 * TENS Output Definition
   * `0x0004` - The next 6 bytes describe the TENS outputs
-  * `0x0006` - Bitfield indicating channels 2 & 3 are TENS outputs
+  * `0x0003` - Bitfield indicating channels 1 & 2 are TENS outputs
   * `0x0001` - Levels Values for this output are `uint16` and allow the user to set the maximum level of the TENS output
   * `0x0FFF` - A `uint16` value that defines the maximum Levels Value for the TENS output as `0xFFF`
 * Vibrator Output Definition
   * `0x0001` - The next 6 bytes describe an eccentric rotational mass vibrator output
-  * `0x0001` - Bitfield indicating channel 1 is a rotational vibrator output
+  * `0x0004` - Bitfield indicating channel 3 is a rotational vibrator output
   * `0x0001` - Levels Values for this output are `uint16` and allow the user to set a maximum level
   * `0x0069` - A `uint16` value that defines the maximum Levels Value for the rotating vibrator output as 105 (`0x69`)
 * LED Output Definition 
